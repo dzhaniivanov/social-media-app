@@ -1,6 +1,7 @@
 import Home from './pages/Home/Home';
+import { Person } from '@material-ui/icons'
 const App = () => {
-    return <Home />
+    return <Person />
 }
 
-export default App
+export default App;
