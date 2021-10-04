@@ -6,13 +6,13 @@ import axios from "axios";
 
 
 const Feed = () => {
-    const [post, setPost] = useState([]);
+    const [posts, setPosts] = useState([]);
 
 
     useEffect(() => {
         const fetchPosts = async () => {
             const res = await axios.get("posts/timeline/615855b5a5578fc5c68d1214");
-            console.log(res);
+            setPosts(res.data);
         }
         fetchPosts();
     }, []);
@@ -21,9 +21,9 @@ const Feed = () => {
         <div className="feed">
             <div className="feedWrapper">
                 <Share />
-                {/*   {Posts.map((p) => (
+                {posts.map((p) => (
                     <Post post={p} key={p.id} />
-                ))} */}
+                ))}
             </div>
         </div>
     )
