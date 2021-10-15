@@ -30,7 +30,7 @@ const Login = () => {
                     <form className="loginBox" onSubmit={handleClick}>
                         <input placeholder="Email" type="email" className="loginInput" ref={email} required />
                         <input placeholder="Password" type="password" className="loginInput" ref={password} required minLength="6" />
-                        <button className="loginButton">{isFetching ? <CircularProgress /> : "Log In"}</button>
+                        <button className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress /> : "Log In"}</button>
                         <span className="loginForgot">Forgot Password?</span>
                         <button className="loginRegisterButton">{isFetching ? (<CircularProgress />) : ("Create a New Account")}</button>
                     </form>
