@@ -13,7 +13,7 @@ const Feed = ({ username }) => {
         const fetchPosts = async () => {
             const res = username
                 ? await axios.get("/posts/profile/" + username)
-                : await axios.get("posts/timeline/615855b5a5578fc5c68d1214");
+                : await axios.get("/posts/timeline/61694b5a2246e7094fd63124");
             setPosts(res.data);
         }
         fetchPosts();
@@ -31,4 +31,4 @@ const Feed = ({ username }) => {
     )
 }
 
-export default Feed
+export default Feed;
