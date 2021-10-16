@@ -23,13 +23,13 @@ const Share = () => {
             data.append("name", fileName);
             newPost.img = fileName;
             try {
-                return await axios.post("/upload", data);
+                await axios.post("/upload", data);
             } catch (error) {
                 console.log(error)
             }
         }
         try {
-            return await axios.post("/posts", newPost);
+            await axios.post("/posts", newPost);
         } catch (error) {
 
         }
