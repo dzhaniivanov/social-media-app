@@ -7,7 +7,7 @@ const INITIAL_STATE = {
         username: "friday",
         email: "friday@abv.bg",
         password: "$2a$10$ksJkHR3CIK9mBguIM0yiWOyDFchqKTD6Jh4W1NwcQFnzVDnUGRTk6",
-        profilePicture: "person/1.jpeg",
+        profilePicture: "person/2.jpeg",
         coverPicture: "",
         followers: [
             "61691e1e9937de99487e489d"
