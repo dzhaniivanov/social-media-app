@@ -3,7 +3,7 @@ import Topbar from "../../components/Topbar/Topbar";
 import Conversations from "../../components/Conversations/Conversations";
 import Message from "../../components/Message/Message";
 import ChatOnline from "../../components/ChatOnline/ChatOnline";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
@@ -13,6 +13,7 @@ const Messenger = () => {
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const scrollRef = useRef();
 
 
     const { user } = useContext(AuthContext);
@@ -57,7 +58,11 @@ const Messenger = () => {
         } catch (error) {
             console.log(error)
         }
-    }
+    };
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages])
 
 
     return (
@@ -81,7 +86,9 @@ const Messenger = () => {
                                 <>
                                     <div className="chatBoxTop">
                                         {messages.map((m) => (
-                                            <Message message={m} own={m.sender === user._id} />
+                                            <div ref={scrollRef}>
+                                                <Message message={m} own={m.sender === user._id} />
+                                            </div>
                                         ))}
 
                                     </div>
