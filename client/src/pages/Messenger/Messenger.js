@@ -1,6 +1,7 @@
 import "./Messenger.css";
 import Topbar from "../../components/Topbar/Topbar";
 import Conversations from "../../components/Conversations/Conversations";
+import Message from "../../components/Message/Message";
 
 const Messenger = () => {
     return (
@@ -20,7 +21,14 @@ const Messenger = () => {
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
-                        box
+                        <div className="chatBoxTop">
+                            <Message />
+                            <Message />
+                            <Message own={true} />
+                            <Message />
+
+                        </div>
+                        <div className="chatBoxBottom"></div>
                     </div>
                 </div>
                 <div className="chatOnline">
