@@ -6,6 +6,9 @@ const morgan = require("morgan");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
+const conversationRoute = require("./routes/conversations");
+const messageRoute = require("./routes/messages");
+
 const multer = require("multer");
 const path = require("path");
 
@@ -33,7 +36,7 @@ const storage = multer.diskStorage({
     },
 });
 
-const upload = multer({ storage:storage });
+const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
     try {
         return res.status(200).json("File has been uploaded!")
@@ -45,6 +48,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/conversations", conversationRoute);
+
 
 
 
