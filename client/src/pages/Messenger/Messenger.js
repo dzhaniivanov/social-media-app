@@ -12,6 +12,8 @@ const Messenger = () => {
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
+
 
     const { user } = useContext(AuthContext);
 
@@ -39,6 +41,24 @@ const Messenger = () => {
         getMessages();
     }, [currentChat]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const message = {
+            sneder: user._id,
+            text: newMessage,
+            conversationId: currentChat._id,
+        };
+
+        try {
+            const res = await axios.post("/messages", message);
+            setMessages([...messages, res.data])
+            setNewMessage("");
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
         <>
@@ -61,14 +81,19 @@ const Messenger = () => {
                                 <>
                                     <div className="chatBoxTop">
                                         {messages.map((m) => (
-                                            <Message message={m} own={m.sender===user._id} />
-
+                                            <Message message={m} own={m.sender === user._id} />
                                         ))}
 
                                     </div>
                                     <div className="chatBoxBottom">
-                                        <textarea placeholder="Write something..." className="chatMessageInput"></textarea>
-                                        <button className="chatSubmitButton">Send</button>
+                                        <textarea
+                                            placeholder="Write something..."
+                                            className="chatMessageInput"
+                                            onChange={(e) => setNewMessage(e.target.value)}
+                                            value={newMessage}
+                                        >
+                                        </textarea>
+                                        <button className="chatSubmitButton" onClick={handleSubmit}>Send</button>
                                     </div>
                                 </>
                                 :
