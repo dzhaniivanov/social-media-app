@@ -24,7 +24,7 @@ const Conversations = ({ conversation, currentUser }) => {
 
     return (
         <div className="conversations">
-            <img src={user?.profilePicture ? user?.profilePicture : PF + "person/noAvatar.png"} alt="" className="conversationImg" />
+            <img src={user?.profilePicture ? PF + user?.profilePicture : PF + "person/noAvatar.png"} alt="" className="conversationImg" />
             <span className="conversationName">{user?.username}</span>
         </div>
     )
